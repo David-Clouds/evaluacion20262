@@ -20,7 +20,10 @@ namespace TecnoGas.Web.Models
 
         [Required(ErrorMessage = "Selecciona el tipo de servicio")]
         [Display(Name = "Tipo de servicio")]
+
         public string TipoServicio { get; set; } // Instalación, Mantenimiento, Revisión, Fuga
+        public string TipoServicio { get; set; }
+
 
         [Display(Name = "Descripción")]
         public string? Descripcion { get; set; }
