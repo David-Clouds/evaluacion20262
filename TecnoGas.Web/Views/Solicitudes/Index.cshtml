@@ -1,0 +1,52 @@
+@model IEnumerable<TecnoGas.Web.Models.SolicitudServicio>
+
+@{
+    ViewData["Title"] = "Solicitudes registradas";
+}
+
+<div class="list-page">
+    <div class="list-header">
+        <div>
+            <h1>📋 Solicitudes registradas</h1>
+            <p>@Model.Count() solicitud(es) en total</p>
+        </div>
+        <a asp-controller="Solicitudes" asp-action="Create" class="btn-primary">+ Nueva solicitud</a>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="empty-state">
+            <p>Aún no hay solicitudes registradas.</p>
+        </div>
+    }
+    else
+    {
+        <div class="table-wrapper">
+            <table class="solicitudes-table">
+                <thead>
+                    <tr>
+                        <th>Cliente</th>
+                        <th>Teléfono</th>
+                        <th>Distrito</th>
+                        <th>Tipo de servicio</th>
+                        <th>Descripción</th>
+                        <th>Fecha de registro</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var s in Model)
+                    {
+                        <tr>
+                            <td>@s.Cliente</td>
+                            <td>@s.Telefono</td>
+                            <td>@s.Distrito</td>
+                            <td><span class="badge">@s.TipoServicio</span></td>
+                            <td>@(string.IsNullOrWhiteSpace(s.Descripcion) ? "—" : s.Descripcion)</td>
+                            <td>@s.FechaRegistro.ToString("dd/MM/yyyy HH:mm")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

@@ -14,6 +14,16 @@ namespace TecnoGas.Web.Controllers
             _context = context;
         }
 
+        // GET: Solicitudes
+        public async Task<IActionResult> Index()
+        {
+            var solicitudes = await _context.Solicitudes
+                .OrderByDescending(s => s.FechaRegistro)
+                .ToListAsync();
+
+            return View(solicitudes);
+        }
+
         // GET: Solicitudes/Create
         public IActionResult Create()
         {
@@ -31,7 +41,7 @@ namespace TecnoGas.Web.Controllers
                 _context.Add(solicitud);
                 await _context.SaveChangesAsync();
                 TempData["Mensaje"] = "¡Solicitud registrada correctamente!";
-                return RedirectToAction(nameof(Create));
+                return RedirectToAction(nameof(Index));
             }
 
             return View(solicitud);
