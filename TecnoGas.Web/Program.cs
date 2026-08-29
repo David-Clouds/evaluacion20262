@@ -32,7 +32,7 @@ app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}")
+    pattern: "{controller=Solicitudes}/{action=Index}/{id?}")
     .WithStaticAssets();
 
 // Aplicar migraciones de la base de datos
